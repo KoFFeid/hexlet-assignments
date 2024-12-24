@@ -34,7 +34,10 @@ public class PostsController {
                 .findByPostId(post.getId())
                 .stream()
                 .map( c -> {
-                    return new CommentDTO(c.getId(), c.getBody());
+                    var comment = new CommentDTO();
+                    comment.setBody(c.getBody());
+                    comment.setId(c.getId());
+                    return comment;
                 }).toList();
 
         dto.setComments(comments);
